@@ -7,3 +7,5 @@
 include
 test
 platformio.ini
+/build
+src/build

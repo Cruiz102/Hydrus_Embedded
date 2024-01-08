@@ -6,15 +6,15 @@
 
 void setup() 
 {
-  initializeGripper();
+  // initializeGripper();
   initROSDependencies();
   initializeThrusters();
-  initializeCameraServo();
-  initializePressureSensor();
+  // initializeCameraServo();
+  // initializePressureSensor();
 }
 
 void loop() 
 {
-  publishCurrentDepth();
+  // publishCurrentDepth();
   runROSDependencies();
 }
