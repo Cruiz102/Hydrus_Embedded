@@ -10,7 +10,6 @@
 
 // TODO: Could change the message structure, so each msg class doesn't use
 // a header to define it
-#include "msg/MotorValues.h"
 
 // SG90 Servo (for camera)
 
@@ -25,10 +24,24 @@ void manipulateGripper(const std_msgs::UInt8&);
 extern ros::Subscriber<std_msgs::UInt8> gripper_mode_sub;
 
 // T100 thrusters declarations
-
-void initializeThrusters(void);
-void setThrusterSpeeds(const MotorValues);
-extern ros::Subscriber<MotorValues> mov_motor_sub;
+void initializeThrustersSubscribers(const std::string& model_name, const int thruster_count);
+void initializeThrustersArduino(void);
+void setThruster_1(const geometry_msgs::Vector3& thusterVector);
+void setThruster_2(const geometry_msgs::Vector3& thusterVector)
+void setThruster_3(const geometry_msgs::Vector3& thusterVector)
+void setThruster_4(const geometry_msgs::Vector3& thusterVector)
+void setThruster_5(const geometry_msgs::Vector3& thusterVector)
+void setThruster_6(const geometry_msgs::Vector3& thusterVector)
+void setThruster_7(const geometry_msgs::Vector3& thusterVector)
+void setThruster_8(const geometry_msgs::Vector3& thusterVector)
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_1;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_2;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_3;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_4;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_5;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_6;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_7;
+extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_8;
 
 // MS5837 pressure sensor declarations
 

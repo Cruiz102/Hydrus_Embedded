@@ -10,14 +10,14 @@ To further understand this code we will have to understand the Hardware Scheme o
 
 Here is the full description of the hardware of the AUV
 
-![Alt text](<RUMArino Architecture Collection - Page 1.png>)
+![Alt text](assets/RUMArino.png)
 
 In the case of this repository because this only defined the code for the Arduino code. we are going to heed our attention in the Microcontroller part
 
 
 
 
-![Alt text](selected.png)
+![Alt text](assets/selected.png)
 
 
 Lets see what are all the individual parts.
@@ -27,10 +27,39 @@ Lets see what are all the individual parts.
 - Bluerobotics T200 Thruster: The thruster that propolses the submarine. This are input the PWD signal that gives them a voltage for running them. For a full dewscription of the thsters go to the following [link](https://bluerobotics.com/store/thrusters/t100-t200-thrusters/t200-thruster-r2-rp/).
 
 
+Important Callout:
+```
+The Arduino board cannot execute all C++ features. For example it cannot execute certain function in the std library. For example  std::bind for creating custom callbacks , Hashmap libraries, std:: functions etc etc. For mre information on the things you can execute in our arduino board you can visit the following link description.
+```
 TODO: Make a description for the other parts  that are connected to the microcontroller.
 
 
 
+## Code Structure
+
+
+From the devices connected to the microcontroller detailed in the previous part we have the following code structure
+
+src:
+- camera_servo.cpp
+- gripper.cpp
+- pressure_sensor.cpp
+- thusters.cpp
+- devices.h
+
+
+### Thrusters
+
+The thrusters will be  8 subscribers that connect from the topics of the uuv_controller and trhuster plugins.
+
+
+
+
+## Install and execute the code.
+
+As usual the code is supposed to run on a docker container.(TODO: make a docker container for embedded systems).
+
+Main dependencies
 
 
 
