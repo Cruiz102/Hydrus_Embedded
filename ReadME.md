@@ -57,11 +57,12 @@ The thrusters will be  8 subscribers that connect from the topics of the uuv_con
 
 ## Install and execute the code.
 
-As usual the code is supposed to run on a docker container.(TODO: make a docker container for embedded systems).
+The Docker is probably the easiest way to install and execute the code. If havent already install docker with the following link. (Remember that to use docker you need to have a Unix enviroment either using Linux, Mac , or WSL2).
 
-Main dependencies
+[Install Docker](https://docs.docker.com/engine/install/)
 
 
+Inside the `/docker` folder execute `docker-compose up` in your terminal. This will build the image `rosserial.dockerfile` and start the container in a interactive enviroment.
 
 
 
