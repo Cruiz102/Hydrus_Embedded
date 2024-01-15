@@ -9,3 +9,4 @@ test
 platformio.ini
 /build
 src/build
+lib

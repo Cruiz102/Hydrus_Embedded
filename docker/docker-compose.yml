@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  rosserial:
+    build:
+      context: .
+      dockerfile: rosserial.dockerfile
+
+    privileged: true
+    stdin_open: true
+    tty: true
+    volumes:
+      - /home/cesarruiz/Projects/sensor_actuator_pkg/:/catkin_ws/src/sensor_actuator_pkg
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
