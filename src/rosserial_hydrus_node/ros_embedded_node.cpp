@@ -6,13 +6,13 @@
 
 ros::NodeHandle nh;
 
-
-void initROSDependencies(void)
+namespace rosserial_hydrus_node {
+void initRosNode(void)
 {
     nh.initNode();  // Initialize ROS node
 
     // Declare publishers
-    nh.advertise(current_depth_pub);
+    // nh.advertise(current_depth_pub);
 
     // Declare subscribers
     nh.subscribe(thruster_sub_1);
@@ -28,8 +28,9 @@ void initROSDependencies(void)
 }
 
 
-void runROSDependencies(void)
+void runRosNode(void)
 {
     nh.spinOnce();
 }
 
+}

@@ -1,11 +1,9 @@
 // This will be the main arduino sketch to put in the  Hydrus microcontroller.
 
-
+# pragma once
 #include <Arduino.h>
 
-#include "ROS/ros_deps.h"
-#include "devices/devices.h"
-#include "<Hy"
+# include <hydrus_rosserial.h>
 
 void setup() 
 {

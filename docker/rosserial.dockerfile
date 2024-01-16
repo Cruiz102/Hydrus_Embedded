@@ -3,13 +3,18 @@
 # https://github.com/frankjoshua/rosserial_arduino_lib/blob/master/Dockerfile
 # The Official 
 FROM ros:noetic-ros-base
+# Set the 
+ENV ARDUINO_BOARD="arduino:avr:uno"
 
 
-# custom installation for RPI Grove dependencies defined in requirements.txt
-RUN apt-get update 
-RUN apt-get install -y gcc
-RUN apt-get install -y curl
-# Install the latest version of arduino-cli
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+       gcc \
+       curl \
+       vim \
+       git  && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/local/
 RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh |  sh  &&\
     arduino-cli core update-index &&\
@@ -21,12 +26,10 @@ RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/inst
 WORKDIR /catkin_ws
 RUN arduino-cli lib install "Rosserial Arduino Library@0.7.9"
 
+WORKDIR /root/Arduino/libraries
+# Download the Hydrus_Embedded library from github
+RUN git clone https://github.com/Cruiz102/Hydrus_Embedded.git
 
 
-
-
-
-# Check the extension because in the example of the rosserial_arduino_lib
-#  They used a pde extension instead of a .ino extension. I tried to compiled
-#  the example but it didn't work in my avr:uno board.
-# CMD [ "arduino-cli compile --fqbn arduino:samd:mkr1000 MyFirstSketch.ino" ]
+WORKDIR /root/Arduino/libraries/Hydrus_Embedded/examples
+# CMD [ "arduino-cli compile --fqbn $ARDUINO_BOARD Hydrus.ino" ]

@@ -13,3 +13,6 @@ services:
       - /home/cesarruiz/Projects/sensor_actuator_pkg/:/catkin_ws/src/sensor_actuator_pkg
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
+
+    environment:
+      - ARDUINO_BOARD=arduino:avr:uno
