@@ -3,7 +3,7 @@
 #include <MS5837.h>
 
 #include "devices.h"
-#include "../ROS/ros_deps.h"
+#include "../rosserial_hydrus_node/ros_deps.h"
 
 
 // Macro declarations
