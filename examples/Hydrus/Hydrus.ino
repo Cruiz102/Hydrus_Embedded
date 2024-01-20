@@ -3,13 +3,12 @@
 # pragma once
 #include <Arduino.h>
 
-# include <hydrus_rosserial.h>
+# include <rosserial_hydrus_node.h>
 
 void setup() 
 {
+  runROSDependencies();
   // initializeGripper();
-  initROSDependencies();
-  initializeThrusters();
   // initializeCameraServo();
   // initializePressureSensor();
 }

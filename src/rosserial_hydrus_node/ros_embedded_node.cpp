@@ -1,12 +1,11 @@
 
-#include "ros_deps.h"
+#include "ros_embedded_node.h"
 #include "devices/devices.h"
 
 // Global declarations
 
 ros::NodeHandle nh;
 
-namespace rosserial_hydrus_node {
 void initRosNode(void)
 {
     nh.initNode();  // Initialize ROS node
@@ -15,6 +14,7 @@ void initRosNode(void)
     // nh.advertise(current_depth_pub);
 
     // Declare subscribers
+    initializeThrustersSubscribers("rexrov2");
     nh.subscribe(thruster_sub_1);
     nh.subscribe(thruster_sub_2);
     nh.subscribe(thruster_sub_3);
@@ -33,4 +33,3 @@ void runRosNode(void)
     nh.spinOnce();
 }
 
-}

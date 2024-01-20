@@ -1,11 +1,13 @@
 
 
 #include <Servo.h>
-# include <string>
+// # include <string>
 #include "devices.h"
-#include <ros/ros.h>
-#include <geometry_msgs/Vector3.h>
-#include <vector>
+#include "geometry_msgs/Vector3.h"
+#include <cstring> // For strcpy and strcat
+
+
+// #include <vector>
 
 
 // Macro and enum declarations
@@ -18,12 +20,14 @@
 //  We use the class of Servo becuase its abstraction
 // can be used for thusters.
 static Servo motors[MOTOR_NUM]; 
-static std::string thruters_topics[MOTOR_NUM]
+static char* thruster_topics[MOTOR_NUM];
 static bool init_motors = false;
 
-void initializeThrustersSubscribers(const std::string& model_name, const int thruster_count) {
-    ros::master::V_TopicInfo master_topics;
-    ros::master::getTopics(master_topics);
+
+// TODO: Implement concatanation for char pointers
+void initializeThrustersSubscribers(const char* model_name) {
+    // ros::master::V_TopicInfo master_topics;
+    // ros::master::getTopics(master_topics);
 
 //  We defined them like this to declare them explicetly
 //  To not make the class f a Vector for memory efficiency.
@@ -37,20 +41,23 @@ void initializeThrustersSubscribers(const std::string& model_name, const int thr
     thruster_topics[7] =  "/" + model_name + "/thrusters/8/";
 
 
+
+// TODO: Need a work around for getting this raise Error for testing purposes.
+
     // if a thuster_topic is not found then we throw an error. 
-    for (const auto& required_topic : required_topics) {
-        bool topic_found = false;
-        for (const auto& topic_info : master_topics) {
-            if (topic_info.name == required_topic) {
-                topic_found = true;
-                break;
-            }
-        }
-        // If a required topic is not found, raise an error
-        if (!topic_found) {
-            throw std::runtime_error("Required topic not found: " + required_topic);
-        }
-    }
+    // for (const auto& required_topic : required_topics) {
+    //     bool topic_found = false;
+    //     for (const auto& topic_info : master_topics) {
+    //         if (topic_info.name == required_topic) {
+    //             topic_found = true;
+    //             break;
+    //         }
+    //     }
+    //     // If a required topic is not found, raise an error
+    //     if (!topic_found) {
+    //         throw std::runtime_error("Required topic not found: " + required_topic);
+    //     }
+    // }
 
     // We cant abstract the  the function calling making callbacks with std::bind because
     // The arduino dependencies do not support this function for this board. We must call
@@ -80,7 +87,7 @@ void setThruster_1(const geometry_msgs::Vector3& thusterVector)
     // always 0.
     if(init_motors){
     motors[0].writeMicroseconds(thusterVector.x);
-    }
+    
 }
 void setThruster_2(const geometry_msgs::Vector3& thusterVector)
 { 
@@ -126,17 +133,5 @@ void setThruster_8(const geometry_msgs::Vector3& thusterVector)
     }
 }
 
-//----------------------
-//----------------------
-
-
-void initializeThrustersArduino(void)
-{     
-    init_motors = true;
-    for (uint8_t i = 0; i < MOTOR_NUM; i++){
-        motors[i].attach(i);
-        motors[i].writeMicroseconds(PWM_NEUTRAL);  // This sets the thrusters output force to 0 lbf
-    }   
-}
 
 

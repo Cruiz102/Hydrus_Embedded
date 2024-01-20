@@ -10,7 +10,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /home/cesarruiz/Projects/sensor_actuator_pkg/:/catkin_ws/src/sensor_actuator_pkg
+      - /home/cesarruiz/Projects/sensor_actuator_pkg:/root/Arduino/libraries/Hydrus
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
 

@@ -24,16 +24,15 @@ void manipulateGripper(const std_msgs::UInt8&);
 extern ros::Subscriber<std_msgs::UInt8> gripper_mode_sub;
 
 // T100 thrusters declarations
-void initializeThrustersSubscribers(const std::string& model_name, const int thruster_count);
-void initializeThrustersArduino(void);
+void initializeThrustersSubscribers(const char* model_name);
 void setThruster_1(const geometry_msgs::Vector3& thusterVector);
-void setThruster_2(const geometry_msgs::Vector3& thusterVector)
-void setThruster_3(const geometry_msgs::Vector3& thusterVector)
-void setThruster_4(const geometry_msgs::Vector3& thusterVector)
-void setThruster_5(const geometry_msgs::Vector3& thusterVector)
-void setThruster_6(const geometry_msgs::Vector3& thusterVector)
-void setThruster_7(const geometry_msgs::Vector3& thusterVector)
-void setThruster_8(const geometry_msgs::Vector3& thusterVector)
+void setThruster_2(const geometry_msgs::Vector3& thusterVector);
+void setThruster_3(const geometry_msgs::Vector3& thusterVector);
+void setThruster_4(const geometry_msgs::Vector3& thusterVector);
+void setThruster_5(const geometry_msgs::Vector3& thusterVector);
+void setThruster_6(const geometry_msgs::Vector3& thusterVector);
+void setThruster_7(const geometry_msgs::Vector3& thusterVector);
+void setThruster_8(const geometry_msgs::Vector3& thusterVector);
 extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_1;
 extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_2;
 extern ros::Subscriber<geometry_msgs::Vector3> thruster_sub_3;
