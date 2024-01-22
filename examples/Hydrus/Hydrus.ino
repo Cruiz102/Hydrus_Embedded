@@ -7,7 +7,7 @@
 
 void setup() 
 {
-  runROSDependencies();
+  initRosNode();
   // initializeGripper();
   // initializeCameraServo();
   // initializePressureSensor();
@@ -16,5 +16,5 @@ void setup()
 void loop() 
 {
   // publishCurrentDepth();
-  runROSDependencies();
+  runRosNode();
 }

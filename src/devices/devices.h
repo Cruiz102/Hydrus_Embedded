@@ -24,7 +24,6 @@ void manipulateGripper(const std_msgs::UInt8&);
 extern ros::Subscriber<std_msgs::UInt8> gripper_mode_sub;
 
 // T100 thrusters declarations
-void initializeThrustersSubscribers(const char* model_name);
 void setThruster_1(const geometry_msgs::Vector3& thusterVector);
 void setThruster_2(const geometry_msgs::Vector3& thusterVector);
 void setThruster_3(const geometry_msgs::Vector3& thusterVector);

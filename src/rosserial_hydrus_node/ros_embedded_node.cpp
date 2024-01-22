@@ -14,7 +14,6 @@ void initRosNode(void)
     // nh.advertise(current_depth_pub);
 
     // Declare subscribers
-    initializeThrustersSubscribers("rexrov2");
     nh.subscribe(thruster_sub_1);
     nh.subscribe(thruster_sub_2);
     nh.subscribe(thruster_sub_3);

@@ -7,8 +7,8 @@
 #include <ros.h>
 
 extern ros::NodeHandle nh;
-void initROSDependencies(void);
-void runROSDependencies(void);
+void initRosNode(void);
+void runRosNode(void);
 
 
 
