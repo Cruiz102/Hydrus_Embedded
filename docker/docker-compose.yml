@@ -10,9 +10,11 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /home/cesarruiz/Projects/sensor_actuator_pkg:/root/Arduino/libraries/Hydrus
+      - ../:/root/Arduino/libraries/Hydrus
+      - ../catkin_ws:/home/catkin_ws/src/test_rosserial
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
 
     environment:
-      - ARDUINO_BOARD=arduino:avr:uno
+      # - ARDUINO_BOARD=arduino:avr:uno
+      - ARDUINO_BOARD=arduino:avr:mega

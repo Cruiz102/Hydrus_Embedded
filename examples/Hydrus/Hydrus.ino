@@ -8,7 +8,7 @@
 void setup() 
 {
   initRosNode();
-  // initializeGripper();
+  initializeGripper();
   // initializeCameraServo();
   // initializePressureSensor();
 }

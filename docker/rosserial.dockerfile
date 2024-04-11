@@ -4,8 +4,17 @@
 # The Official 
 FROM ros:noetic-ros-base
 # Set the 
-ENV ARDUINO_BOARD="arduino:avr:uno"
+ENV ARDUINO_BOARD="arduino:avr:mega"
 
+
+RUN  /bin/bash -c 'source /opt/ros/noetic/setup.bash && \
+    mkdir -p /home/catkin_ws/src && \
+    cd /home/catkin_ws/ && \
+    catkin_make && \
+    source devel/setup.bash'
+
+
+RUN apt update && apt install -y ros-noetic-rosserial-arduino && rm -rf /var/lib/apt/
 
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
