@@ -12,7 +12,7 @@
 // TODO: Check if we can just send the PWM value from another part of
 // the code.
 // TODO: Check how much the PWM value affects the gripper
-#define GRIPPER_PIN 12  // Pin for the gripper (#TODO: Assign a pin for the gripper)
+#define GRIPPER_PIN 9 // Pin for the gripper (#TODO: Assign a pin for the gripper)
 #define GRIPPER_OPEN 1899  // PWM value for the gripper to be almost opened
 #define GRIPPER_CLOSED 1099  // PWM value for the gripper to be almost closed
 #define GRIPPER_NEUTRAL 1500  // PWM value for the gripper to be neutral

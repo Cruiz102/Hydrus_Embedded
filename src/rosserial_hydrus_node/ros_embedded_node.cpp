@@ -12,7 +12,7 @@ void initRosNode(void)
 
     // Declare publishers
     // nh.advertise(current_depth_pub);
-
+    
     // Declare subscribers
     nh.subscribe(thruster_sub_1);
     nh.subscribe(thruster_sub_2);

@@ -23,6 +23,7 @@ void initializeGripper(void);
 void manipulateGripper(const std_msgs::UInt8&);
 extern ros::Subscriber<std_msgs::UInt8> gripper_mode_sub;
 
+void initializeThrustersArduino(void);
 // T100 thrusters declarations
 void setThruster_1(const geometry_msgs::Vector3& thusterVector);
 void setThruster_2(const geometry_msgs::Vector3& thusterVector);
