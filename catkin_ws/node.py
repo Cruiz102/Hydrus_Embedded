@@ -1,43 +1,54 @@
 #!/usr/bin/env python
 import rospy
-from std_msgs.msg import UInt8
-import random
+from std_msgs.msg import UInt16  # Assuming PWM commands require UInt16
 import time
 
+# Define PWM values for different thruster commands
+PWM_ACTIVE = 1600
+PWM_NEUTRAL = 1500
 
-#define GRIPPER_PIN 12  // Pin for the gripper (#TODO: Assign a pin for the gripper)
-#define GRIPPER_OPEN 1899  // PWM value for the gripper to be almost opened
-#define GRIPPER_CLOSED 1099  // PWM value for the gripper to be almost closed
-#define GRIPPER_NEUTRAL 1500  // PWM value for the gripper to be neutral
-
-OPEN = 1899
-CLOSED = 1099
-NEUTRAL = 1500
+# Thruster topic names for all 8 thrusters
+THRUSTER_TOPICS = [
+    "hydrus/thrusters/1",
+    "hydrus/thrusters/2",
+    "hydrus/thrusters/3",
+    "hydrus/thrusters/4",
+    "hydrus/thrusters/5",
+    "hydrus/thrusters/6",
+    "hydrus/thrusters/7",
+    "hydrus/thrusters/8"
+]
 
 def publisher():
-    # Initialize the ROS node
-    rospy.init_node('gripper_mode_publisher', anonymous=True)
+    rospy.init_node('thruster_control_publisher', anonymous=True)
 
-    # Create a publisher object for the topic 'gripper_mode'
-    pub = rospy.Publisher('gripper_mode', UInt8, queue_size=10)
+    # Create a list of publisher objects for each thruster topic
+    publishers = [
+        rospy.Publisher(topic, UInt16, queue_size=10) for topic in THRUSTER_TOPICS
+    ]
 
-    # Set the loop rate (0.1 Hz for every 10 seconds)
-    rate = rospy.Rate(0.1)
+    rate = rospy.Rate(1)  # 1 Hz for simplicity
 
     while not rospy.is_shutdown():
-        # Generate a random number between 0 and 255
-        random_number = random.choice([OPEN, CLOSED, NEUTRAL])
+        # Sequence 1: Activate thrusters 1, 2, 3, 4 for 8 seconds
+        for _ in range(8):
+            for i in range(4):  # Only the first four thrusters
+                publishers[i].publish(PWM_ACTIVE)
+            for i in range(4, 8):  # Ensure thrusters 5-8 are neutral
+                publishers[i].publish(PWM_NEUTRAL)
+            rate.sleep()
 
-        # Create a UInt8 message with the random number
-        msg = UInt8()
-        msg.data = random_number
+        # Sequence 2: Activate thrusters 1, 3 for 4 seconds
+        for _ in range(4):
+            publishers[0].publish(PWM_ACTIVE)  # Thruster 1
+            publishers[2].publish(PWM_ACTIVE)  # Thruster 3
+            # Ensure thrusters 2, 4-8 are neutral
+            publishers[1].publish(PWM_NEUTRAL)
+            for i in range(3, 8):
+                publishers[i].publish(PWM_NEUTRAL)
+            rate.sleep()
 
-        # Publish the message
-        pub.publish(msg)
-        rospy.loginfo("Published random UInt8: %d" % random_number)
-
-        # Sleep to maintain the loop rate
-        rate.sleep()
+        rospy.loginfo("Completed a cycle of thruster commands.")
 
 if __name__ == '__main__':
     try:

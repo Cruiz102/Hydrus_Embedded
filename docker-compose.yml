@@ -10,8 +10,8 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ../:/root/Arduino/libraries/Hydrus
-      - ../catkin_ws:/home/catkin_ws/src/test_rosserial
+      - ./:/root/Arduino/libraries/Hydrus
+      - ./catkin_ws:/home/catkin_ws/src/test_rosserial
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
 

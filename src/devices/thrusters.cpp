@@ -9,7 +9,7 @@
 
 #define MOTOR_NUM 8  // Total number of motors for the actuator
 #define PWM_NEUTRAL 1500  // The thruster's output force is 0 lbf at this PWM value
-#define model_name "rexrov2"  // The name of the model
+#define model_name "hydrus"  // The name of the model
 static Servo motors[MOTOR_NUM]; 
 static char* thruster_topics[MOTOR_NUM];
 static bool init_motors = false;
